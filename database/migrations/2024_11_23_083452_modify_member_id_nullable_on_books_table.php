@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
-            $table->text('address')->nullable();        
-            $table->timestamps();
+        Schema::table('books', function (Blueprint $table) {
+            $table->unsignedBigInteger('member_id')->nullable()->change(); // Membuat member_id nullable
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member');
+        Schema::table('books', function (Blueprint $table) {
+            $table->unsignedBigInteger('member_id')->nullable(false)->change(); // Kembalikan ke not null
+        });
     }
 };
