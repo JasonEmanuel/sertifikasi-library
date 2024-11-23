@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-2xl font-bold mb-6">Members List</h1>
-<div class="mb-4">
-    <a href="{{ route('members.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Create Member</a>
+
+<div class="mb-4 flex items-center justify-between">
+    <h1 class="text-2xl font-bold">Members List</h1>
+    <a href="{{ route('members.create') }}" class="bg-blue-500 text-white px-4 py-3 rounded">Create Member</a>
 </div>
 <table class="table-auto w-full border-collapse border border-gray-200">
     <thead class="bg-gray-100">

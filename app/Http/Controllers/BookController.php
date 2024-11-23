@@ -35,26 +35,29 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:books,title',
             'author' => 'required',
             'publisher' => 'required',
-            'year' => 'required|numeric',
-            'categories' => 'required|array', 
+            'year' => [
+                'required',
+                'numeric',
+                'min:1900',
+                'max:' . date('Y'), 
+            ],
+            'categories' => 'required|array',
             'member_id' => 'nullable|exists:members,id',
         ]);
     
-        $book = Book::create([
+        Book::create([
             'title' => $request->title,
             'author' => $request->author,
             'publisher' => $request->publisher,
             'year' => $request->year,
             'member_id' => $request->member_id,
-        ]);
-    
-        $book->categories()->attach($request->categories); 
+        ])->categories()->attach($request->categories);
     
         return redirect()->route('books.index')->with('success', 'Book created successfully');
-    }     
+    }        
 
     public function show($id)
     {
@@ -75,21 +78,26 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'publisher' => 'required',
-            'year' => 'required|numeric',
+            'title' => 'required|unique:books',
+            'author' => 'required|string',
+            'publisher' => 'required|string',
+            'year' => [
+                'required',
+                'numeric',
+                'min:1900',
+                'max:' . date('Y'), 
+            ],
             'categories' => 'required|array',
             'member_id' => 'nullable|exists:members,id',
         ]);
     
         $book = Book::findOrFail($id);
         $book->update([
-            'title' => $request->title,
-            'author' => $request->author,
-            'publisher' => $request->publisher,
-            'year' => $request->year,
-            'member_id' => $request->member_id,
+            'title' => $request->input('title'), 
+            'author' => $request->input('author'),
+            'publisher' => $request->input('publisher'),
+            'year' => $request->input('year'),
+            'member_id' => $request->input('member_id'),
         ]);
     
         $book->categories()->sync($request->categories); 

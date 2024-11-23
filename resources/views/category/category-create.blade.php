@@ -22,16 +22,6 @@
                     placeholder="Enter category name" 
                     required>
             </div>
-            <!-- Description -->
-            <div class="mb-4">
-                <label for="description" class="block font-semibold mb-2 text-gray-700">Description (Optional)</label>
-                <textarea 
-                    name="description" 
-                    id="description" 
-                    rows="4" 
-                    class="w-full border-gray-300 border rounded p-3 focus:outline-none focus:ring focus:ring-blue-300" 
-                    placeholder="Category description"></textarea>
-            </div>
             <!-- Submit Button -->
             <div class="flex justify-end">
                 <a href="{{ route('categories.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mr-2">Cancel</a>

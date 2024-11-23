@@ -5,7 +5,7 @@
         <h1 class="text-3xl font-bold mb-6">Books</h1>
 
         <!-- Filter Form -->
-        <form method="GET" action="{{ route('books.index') }}" id="filterForm" class="mb-4">
+        <form method="GET" action="{{ route('books.index') }}" id="filterForm" class="mb-4 flex items-center justify-between">
             <div class="flex items-center space-x-4">
                 <label for="category_id" class="font-semibold">Filter by Category:</label>
                 <select name="category_id" id="category_id" class="border-gray-300 rounded p-2"
@@ -18,8 +18,14 @@
                     @endforeach
                 </select>
             </div>
-        </form>
 
+            <!-- Button for Creating a New Book -->
+            <div>
+                <a href="{{ route('books.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Create Book
+                </a>
+            </div>
+        </form>
 
         <!-- Book Table -->
         <table class="table-auto w-full border-collapse border border-gray-200">
