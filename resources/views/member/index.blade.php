@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($members as $member)
+        @forelse ($members as $member)
         <tr>
             <td class="border px-4 py-2">{{ $member->name }}</td>
             <td class="border px-4 py-2">{{ $member->email }}</td>
@@ -33,7 +33,11 @@
                 </form>
             </td>
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <td colspan="5" class="text-center border px-4 py-2 text-gray-500">No Data Available</td>
+        </tr>
+        @endforelse
     </tbody>
 </table>
 @endsection

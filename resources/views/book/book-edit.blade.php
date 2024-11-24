@@ -81,8 +81,11 @@
                     @endforeach
                 </select>
             </div>
-            <!-- Submit Button -->
-            <div class="flex justify-end">
+            <!-- Buttons -->
+            <div class="flex justify-between">
+                <a href="{{ route('books.index') }}" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                    Cancel
+                </a>
                 <button type="submit"
                     class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 focus:ring focus:ring-blue-300">
                     Update

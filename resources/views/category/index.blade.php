@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($categories as $category)
+        @forelse ($categories as $category)
         <tr>
             <td class="border px-4 py-2">{{ $category->category_name }}</td>
             <td class="border px-4 py-2 text-center">
@@ -26,7 +26,11 @@
                 </form>
             </td>
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <td colspan="2" class="text-center border px-4 py-2 text-gray-500">No Data Available</td>
+        </tr>
+        @endforelse
     </tbody>
 </table>
 @endsection

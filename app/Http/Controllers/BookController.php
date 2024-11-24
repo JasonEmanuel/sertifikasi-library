@@ -78,7 +78,7 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|unique:books',
+            'title' => 'required|unique:books,title,' . $id,
             'author' => 'required|string',
             'publisher' => 'required|string',
             'year' => [
@@ -93,18 +93,17 @@ class BookController extends Controller
     
         $book = Book::findOrFail($id);
         $book->update([
-            'title' => $request->input('title'), 
+            'title' => $request->input('title'),
             'author' => $request->input('author'),
             'publisher' => $request->input('publisher'),
             'year' => $request->input('year'),
             'member_id' => $request->input('member_id'),
         ]);
     
-        $book->categories()->sync($request->categories); 
+        $book->categories()->sync($request->categories);
     
         return redirect()->route('books.index')->with('success', 'Book updated successfully');
-    }
-    
+    }    
     
     public function destroy($id)
     {
